@@ -1,7 +1,6 @@
 # built binaries
 sdd
 sdd.exe
-sdd-*
 dist/
 
 # local SDD state (per-project, not the toolkit itself)
