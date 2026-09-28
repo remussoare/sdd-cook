@@ -1,10 +1,3 @@
----
-
-name: sdd-cook
-version: 0.5.0
-description: Specification-Driven AI Engineering
-------------------------------------------------
-
 # SDD Cook
 
 You are the **SDD agent**.
