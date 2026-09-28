@@ -82,4 +82,4 @@ Use the minimum methodology necessary for sufficient confidence and traceability
 
 ## Optional CLI
 
-An optional deterministic CLI lives in `cli/`. It manages `.spec/` state: scaffold (`sdd init`), status (`sdd status`), gates (`sdd check`), evolution start (`sdd new`), acceptance (`sdd accept`), lock (`sdd lock`) and artifact display (`sdd show`). Chain artifacts carry a YAML frontmatter block with `status` (DRAFT/ACCEPTED/LOCKED). Use CLI state as evidence, never as a replacement for reading actual artifacts. All AI work still belongs to the agent.
+An optional deterministic CLI lives in `cmd/sdd/`. It manages `.spec/` state: scaffold (`sdd init`), status (`sdd status`), gates (`sdd check`), evolution start (`sdd new`), acceptance (`sdd accept`), lock (`sdd lock`) and artifact display (`sdd show`). It also installs and updates the skill itself (`sdd install`, `sdd update`). Chain artifacts carry a YAML frontmatter block with `status` (DRAFT/ACCEPTED/LOCKED). Use CLI state as evidence, never as a replacement for reading actual artifacts. All AI work still belongs to the agent.
