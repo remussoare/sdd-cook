@@ -1,5 +1,42 @@
 # Adaptive Rigor
 
-Use the minimum methodology necessary for sufficient confidence and traceability.
+SDD does not require the same verification cost for every change.
 
-Simple work may remain lightweight. Complex work may require integration, regression, datasets, performance, visual evidence, backtests, ADRs, spikes or prototypes.
+The required rigor depends on:
+
+* complexity;
+* risk;
+* scope;
+* dependencies;
+* reversibility;
+* impact;
+* uncertainty.
+
+## Simple
+
+Use focused tests and validation for the affected behavior.
+
+## Medium
+
+Add dependency-aware verification and relevant regression.
+
+## Complex / High Risk
+
+Use additional evidence when justified:
+
+* integration;
+* regression;
+* datasets;
+* performance;
+* visual;
+* backtest;
+* security;
+* migration;
+* model evaluation;
+* environment verification.
+
+## Rule
+
+Use the minimum methodology necessary to obtain sufficient confidence and traceability.
+
+Do not create empty artifacts simply because a methodology mentions them.

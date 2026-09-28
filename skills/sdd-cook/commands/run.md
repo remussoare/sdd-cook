@@ -1,18 +1,21 @@
 # /sdd:run
 
-## Purpose
+## PURPOSE
 
-Execute only authorized planned work.
+Ejecutar únicamente trabajo autorizado mediante Tasks planificadas.
 
-## Critical rule
+## RULE
 
-`/sdd:run` MUST NOT silently create a Plan, invent Tasks, invent Tests or invent Specification.
+`/sdd:run` no debe crear silenciosamente:
 
-## Procedure
+* Plan;
+* Specification;
+* Tests;
+* Tasks.
 
-1. Read actual `.spec/` state.
-2. Require an accepted Plan and executable Tasks.
-3. If Plan is missing, return:
+## PLAN MISSING
+
+Si no existe Plan:
 
 ```text
 PLAN: MISSING
@@ -21,18 +24,26 @@ Required artifact: PLAN
 Run: /sdd:plan
 ```
 
-4. Execute pending authorized Tasks.
-5. Run required available Tests.
-6. Record files changed, results, architecture compliance and drift.
-7. BLOCK if implementation requires an unaccepted functional decision.
+## ACTIONS
 
-## Refactoring
+El agente debe:
 
-Allowed only when behavior before equals behavior after.
+1. Seleccionar Tasks pendientes.
+2. Implementar las Tasks autorizadas.
+3. Ejecutar los Tests requeridos.
+4. Reportar:
 
-## Forbidden
+   * Tasks completadas;
+   * archivos modificados;
+   * resultados de Tests;
+   * drift detectado.
 
-- invent behavior
-- change Specification to justify code
-- change Tests to hide failures
-- implement unplanned work
+## BLOCK
+
+Si durante la implementación es necesaria una decisión funcional no definida:
+
+```text
+BLOCKED
+```
+
+No debe inventarse el comportamiento necesario.

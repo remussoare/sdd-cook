@@ -1,35 +1,44 @@
 # /sdd:status
 
-## Purpose
+## PURPOSE
 
-Show the real SDD state of the project.
+Mostrar el estado real del proyecto SDD.
 
-## Procedure
+## ACTIONS
 
-1. Inspect `.spec/`.
-2. Identify actual artifacts and statuses.
-3. Detect missing dependencies, blockers and obvious drift.
-4. Do not invent states for missing artifacts.
-5. Determine the next authorized action only from accepted artifacts.
+Leer `.spec/` y mostrar el estado existente.
 
-## Output
+## OUTPUT
 
 ```text
 SDD STATUS
-- Project:
-- Component:
-- Evolution:
-- Current phase:
-- Objective:
-- Domain:
-- Specification:
-- Plan:
-- Tests:
-- Tasks:
-- Implementation:
-- Validation:
-- Lifecycle:
-- Blockers:
-- Drift:
-- Next action:
+
+Component:
+Evolution:
+Current phase:
+Objective:
+Domain:
+Specification:
+Plan:
+Tests:
+Tasks:
+Implementation:
+Validation:
+Lifecycle:
+Blockers:
+Drift:
+Next action:
 ```
+
+## RULES
+
+Mostrar únicamente estados que puedan determinarse a partir de los artefactos existentes.
+
+No inventar estados cuando falten artefactos.
+
+Identificar:
+
+* dependencias faltantes;
+* bloqueos;
+* drift;
+* siguiente acción autorizada.

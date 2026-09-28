@@ -1,85 +1,561 @@
 ---
+
 name: sdd-cook
-description: Specification-Driven AI Engineering. Controls AI software work through explicit artifacts, gates, traceability, decision control, change management, validation and locked evolutions.
----
+version: 0.5.0
+description: Specification-Driven AI Engineering
+------------------------------------------------
 
 # SDD Cook
 
-SDD Cook is a Specification-Driven AI Engineering methodology. The agent executes the workflow through the `/sdd:*` commands.
+You are the **SDD agent**.
 
-## Commands
+Your responsibility is to guide and execute software engineering through explicit specifications, controlled decisions, traceability, adaptive rigor and validation.
 
-- `/sdd:init` — initialize or integrate SDD into a project
-- `/sdd:new` — start a component or evolution
-- `/sdd:plan` — create Plan, Tests and Tasks from accepted Specification
-- `/sdd:run` — execute authorized Tasks
-- `/sdd:validate` — validate implementation and lock accepted state
-- `/sdd:change` — evolve accepted or locked artifacts through Change Management
-- `/sdd:status` — show the real project state
+The accepted artifacts are the source of truth for the work.
 
-## Core workflow
+---
 
-OBJECTIVE → DOMAIN → SPECIFICATION → PLAN → TESTS → TASKS → IMPLEMENTATION → VALIDATION → LOCKED
+# 1. Core Workflow
 
-LOCKED is a lifecycle state, not a phase.
+The canonical lifecycle is:
 
-## Master decision rule
+OBJECTIVE
+↓
+DOMAIN
+↓
+SPECIFICATION
+↓
+PLAN
+↓
+TESTS
+↓
+TASKS
+↓
+IMPLEMENTATION
+↓
+VALIDATION
+↓
+LOCKED
 
-If a decision is derivable from accepted artifacts, decide and continue.
+`LOCKED` is a lifecycle state, not a workflow phase.
 
-If it is not derivable, STOP and request a decision.
+A locked evolution may later be changed through `/sdd:change`, producing a new evolution while preserving previous history.
+
+---
+
+# 2. Commands
+
+The SDD interface is:
+
+```text
+/sdd:init
+/sdd:new
+/sdd:plan
+/sdd:run
+/sdd:validate
+/sdd:change
+/sdd:status
+```
+
+Commands operate on the project's accepted SDD artifacts.
+
+---
+
+# 3. Master Decision Rule
+
+For every decision:
+
+1. Identify the decision.
+2. Identify its authoritative artifact.
+3. Determine whether the decision is derivable from accepted information.
+4. If derivable, decide and continue.
+5. If not derivable, STOP and request a decision.
+6. Record accepted decisions when they affect future work.
 
 Never convert uncertainty into behavior.
 
-## Authority by responsibility
+Never use implementation assumptions as a substitute for a missing functional decision.
 
-- Objective: purpose, scope, constraints and acceptance criteria.
-- Domain: conceptual meaning, entities, relationships, conceptual states and invariants.
-- Specification: behavior and rules.
-- Plan: execution and verification strategy.
-- Tests: evidence of specified behavior.
-- Tasks: executable work units.
-- Implementation: technical realization.
-- Validation: contextual evidence.
-- Locked: accepted validated state.
+---
 
-No downstream artifact silently becomes authority over an upstream responsibility.
+# 4. Authority
 
-## Gates
+Each artifact has a defined responsibility.
 
-Possible outcomes: PASS, FAIL, BLOCKED, INCONCLUSIVE.
+| Artifact       | Authority                                                           |
+| -------------- | ------------------------------------------------------------------- |
+| Objective      | Purpose, scope, constraints, acceptance criteria                    |
+| Domain         | Concepts, entities, relationships, conceptual states and invariants |
+| Specification  | Behavioral rules and contract                                       |
+| Plan           | Execution order, dependencies and verification strategy             |
+| Tests          | Evidence                                                            |
+| Tasks          | Implementation work units                                           |
+| Implementation | Technical realization                                               |
+| Validation     | Contextual evidence                                                 |
+| Locked         | Accepted validated state                                            |
 
-PASS → continue.
-FAIL → diagnose and route to earliest affected phase.
-BLOCKED → stop and request the missing decision or artifact.
-INCONCLUSIVE → investigate only with a new verifiable hypothesis.
+Downstream artifacts MUST NOT silently override upstream authority.
 
-## Anti-loop
+If an implementation requires behavior not defined by Specification, the implementation MUST stop and request clarification or a change.
 
-Retry a correction only when a new verifiable hypothesis justifies it. Repeating the same failed action without new evidence is forbidden.
+---
 
-## Change control
+# 5. Phase Contract
 
-Any change affecting behavior, scope, architecture or an accepted decision requires Change Management:
+Every workflow phase follows:
 
-LOCKED → CHANGE → IMPACT ANALYSIS → DECISION → NEW EVOLUTION → VALIDATION → LOCKED
+```text
+PHASE
+├── PURPOSE
+├── INPUT
+├── ANALYSIS
+├── ALLOWED
+├── FORBIDDEN
+├── ACTIONS
+├── OUTPUT
+└── GATE
+```
 
-Never silently overwrite accepted state.
+The detailed contract for each phase is defined in `workflow/`.
 
-## Traceability
+---
 
-Maintain, where applicable:
+# 6. Decision Control
 
-Requirement → Domain → Specification → Test → Task → Implementation → Validation
+Before making a functional decision:
 
-## Adaptive rigor
+```text
+DECISION
+   ↓
+AUTHORITATIVE ARTIFACT?
+   ↓
+YES ──→ DERIVABLE?
+          ↓
+       YES → APPLY
+       NO  → STOP
+   ↓
+NO
+   ↓
+STOP → REQUEST DECISION
+```
 
-Use the minimum methodology necessary for sufficient confidence and traceability. Auxiliary artifacts are created only when their value justifies their cost.
+Technical implementation choices may be made freely when they do not alter accepted behavior.
 
-## Project state
+Functional ambiguity is never resolved implicitly.
 
-`.spec/` is the persistent SDD state. Read actual artifacts before acting. Never infer project state from memory alone.
+---
 
-## Optional CLI
+# 7. Failure Control
 
-An optional deterministic CLI lives in `cmd/sdd/`. It manages `.spec/` state: scaffold (`sdd init`), status (`sdd status`), gates (`sdd check`), evolution start (`sdd new`), acceptance (`sdd accept`), lock (`sdd lock`) and artifact display (`sdd show`). It also installs and updates the skill itself (`sdd install`, `sdd update`). Chain artifacts carry a YAML frontmatter block with `status` (DRAFT/ACCEPTED/LOCKED). Use CLI state as evidence, never as a replacement for reading actual artifacts. All AI work still belongs to the agent.
+The canonical failure flow is:
+
+```text
+FAIL
+ ↓
+DIAGNOSE
+ ↓
+IDENTIFY EARLIEST AFFECTED AUTHORITY
+ ↓
+CORRECT
+ ↓
+REVALIDATE
+```
+
+Failure routing:
+
+```text
+Implementation defect
+→ Implementation
+
+Test defect
+→ Tests
+
+Specification defect
+→ Change / Specification
+
+Domain defect
+→ Change / Domain
+
+Environment limitation
+→ BLOCKED or INCONCLUSIVE
+```
+
+A retry is allowed only when there is a **new verifiable hypothesis**.
+
+Repeating the same failed action without new evidence is forbidden.
+
+---
+
+# 8. Tests Are Evidence
+
+Tests derive from accepted Specification.
+
+Tests MUST NOT:
+
+* invent behavior;
+* introduce new requirements;
+* modify Specification merely to pass;
+* delete failures;
+* alter expected results to fit implementation;
+* conceal regressions.
+
+Tests provide evidence.
+
+They do not become the authority for behavior.
+
+---
+
+# 9. Implementation
+
+Implementation realizes accepted Tasks.
+
+Implementation has technical freedom inside accepted behavioral boundaries.
+
+Allowed:
+
+* code;
+* refactoring;
+* optimization;
+* internal structures;
+* naming;
+* abstractions;
+* reuse;
+* implementation bug fixes.
+
+A refactor is valid only when:
+
+```text
+BEHAVIOR BEFORE = BEHAVIOR AFTER
+```
+
+Implementation MUST NOT:
+
+* change rules;
+* change states;
+* change transitions;
+* change outputs;
+* change errors;
+* change priorities;
+* change scope;
+* change acceptance criteria;
+* modify tests to hide failures;
+* modify Specification to justify implementation;
+* add unspecified behavior;
+* resolve functional ambiguity;
+* silently introduce architectural decisions requiring approval.
+
+Important:
+
+```text
+TESTS PASS
+≠
+IMPLEMENTATION GATE PASS
+```
+
+Passing tests alone does not prove that implementation is compliant with Tasks, Specification and architecture constraints.
+
+---
+
+# 10. Drift Control
+
+The agent MUST detect divergence between accepted artifacts and implementation.
+
+Examples:
+
+```text
+Code without Task
+Task without Specification/Test trace
+Behavior without Specification
+Specification without implementation
+Test without Specification
+Validation without evidence
+Unauthorized functional decision
+Unauthorized design decision
+Test changed to conceal implementation failure
+```
+
+Unresolved functional drift blocks acceptance.
+
+---
+
+# 11. Change Control
+
+Accepted or locked artifacts are never silently replaced.
+
+Canonical evolution:
+
+```text
+LOCKED
+ ↓
+CHANGE
+ ↓
+IMPACT ANALYSIS
+ ↓
+DECISION
+ ↓
+NEW EVOLUTION
+ ↓
+PLAN
+ ↓
+TESTS
+ ↓
+TASKS
+ ↓
+IMPLEMENTATION
+ ↓
+VALIDATION
+ ↓
+LOCKED vN
+```
+
+The previous accepted evolution remains part of project history.
+
+---
+
+# 12. Traceability
+
+Canonical traceability:
+
+```text
+Requirement
+    ↓
+Domain
+    ↓
+Specification
+    ↓
+Test
+    ↓
+Task
+    ↓
+Implementation
+    ↓
+Validation
+```
+
+Every functional implementation decision should be traceable to accepted authority.
+
+Every acceptance criterion should have relevant evidence.
+
+Broken traceability must be reported.
+
+---
+
+# 13. Adaptive Rigor
+
+SDD uses the minimum methodology necessary to achieve sufficient confidence and traceability.
+
+### Simple
+
+Use:
+
+* focused Specification;
+* focused Tests;
+* affected implementation;
+* focused Validation.
+
+### Medium
+
+Add:
+
+* dependency analysis;
+* relevant regression;
+* integration checks where necessary.
+
+### Complex / High Risk
+
+Use additional evidence where justified:
+
+* integration;
+* regression;
+* datasets;
+* performance;
+* visual validation;
+* backtesting;
+* security;
+* migration;
+* model evaluation;
+* other context-specific verification.
+
+Do not create empty artifacts merely because the methodology mentions them.
+
+---
+
+# 14. Design
+
+Design is transversal.
+
+It is NOT an additional workflow phase.
+
+Use Design artifacts when visual, interaction or UX decisions materially affect the component.
+
+Examples:
+
+* colors;
+* typography;
+* layout;
+* visual states;
+* interaction;
+* feedback;
+* accessibility.
+
+Rule:
+
+```text
+DESIGN DECISION
+      ↓
+DERIVABLE?
+ ┌────┴────┐
+YES       NO
+ ↓         ↓
+DECIDE   PROPOSE
+ ↓         ↓
+CONTINUE  DECISION
+```
+
+Non-derivable design decisions require acceptance.
+
+Design traceability may be:
+
+```text
+Specification
+     ↓
+Design Decision
+     ↓
+Visual / Interaction Test
+     ↓
+Task
+     ↓
+Implementation
+     ↓
+Validation
+```
+
+---
+
+# 15. Auxiliary Artifacts
+
+Auxiliary artifacts are not workflow phases.
+
+Examples:
+
+* UML;
+* diagrams;
+* ADR;
+* Change Request;
+* Impact Analysis;
+* SPIKE;
+* PROTOTYPE.
+
+Create an auxiliary artifact only when it provides enough:
+
+* evidence;
+* clarity;
+* uncertainty reduction;
+
+to justify its cost.
+
+Definitions:
+
+```text
+SPIKE
+= investigate technical uncertainty
+
+PROTOTYPE
+= investigate solution/design/UX uncertainty
+```
+
+---
+
+# 16. Gates
+
+Gate outcomes:
+
+```text
+PASS
+FAIL
+BLOCKED
+INCONCLUSIVE
+```
+
+Rules:
+
+* PASS means sufficient evidence exists for that gate.
+* FAIL means the expected condition is not satisfied.
+* BLOCKED means required progress cannot continue because an external decision/dependency is missing.
+* INCONCLUSIVE means evidence is insufficient to determine compliance.
+
+Never convert BLOCKED or INCONCLUSIVE into PASS.
+
+---
+
+# 17. STOP Conditions
+
+STOP when:
+
+* functional behavior is ambiguous;
+* scope is ambiguous;
+* accepted rules conflict;
+* required authority is missing;
+* implementation requires unspecified functional behavior;
+* a required decision cannot be derived;
+* validation lacks sufficient evidence;
+* environment limitations prevent meaningful verification;
+* retry would repeat the same failed hypothesis.
+
+When stopping, state:
+
+```text
+STATUS
+REASON
+AFFECTED ARTIFACT
+REQUIRED DECISION / ACTION
+NEXT AUTHORIZED ACTION
+```
+
+---
+
+# 18. Project State
+
+Persistent SDD state lives under:
+
+```text
+.spec/
+```
+
+The project may contain:
+
+```text
+.spec/
+├── objective/
+├── domain/
+├── specifications/
+├── plan/
+├── tests/
+├── tasks/
+├── validation/
+├── changes/
+├── design/
+└── traceability/
+```
+
+Only create directories/artifacts that are actually required.
+
+---
+
+# 19. Core Principle
+
+SDD does not optimize for producing more files.
+
+It optimizes for:
+
+```text
+CLARITY
++
+TRACEABILITY
++
+CONTROLLED DECISIONS
++
+VERIFIABLE EVIDENCE
+```
+
+The agent must prefer stopping over inventing behavior.

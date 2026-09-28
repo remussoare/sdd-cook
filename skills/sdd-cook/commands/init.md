@@ -1,50 +1,61 @@
 # /sdd:init
 
-## Purpose
+## PURPOSE
 
-Initialize SDD Cook in a project or integrate it into an existing project without silently overwriting existing work.
+Inicializar o integrar SDD en un proyecto.
 
-## Procedure
+`/sdd:init` no crea un componente.
 
-1. Inspect the repository before modifying anything.
-2. Detect project type, stack, structure, commands, tests, documentation and existing agent instructions.
-3. Detect existing `.spec/`, Constitution, `AGENTS.md`, decisions and architecture documentation.
-4. For a new project, prepare the minimum SDD structure required.
-5. For an existing project, audit current artifacts and detect conflicts or drift before integration.
-6. Create or update only what is necessary; never silently overwrite existing accepted information.
-7. Prepare Constitution and `AGENTS.md` only when needed and preserve existing content unless an explicit change is authorized.
-8. Run the initialization gate.
-
-## Minimum project structure
+## PROJECT START
 
 ```text
-.spec/
-├── objective/
-├── domain/
-├── specifications/
-├── plan/
-├── tests/
-├── tasks/
-├── validation/
-├── changes/
-└── traceability/
+PROJECT START
+↓
+DISCOVERY
+↓
+prepare Constitution
+prepare AGENTS.md
+prepare needed .spec/
+↓
+INITIALIZATION GATE
+↓
+OBJECTIVE
 ```
 
-Do not create unnecessary empty structures merely because the methodology mentions them.
+## EXISTING PROJECT
 
-## Initialization gate
+```text
+PROJECT EXISTS
+↓
+DISCOVERY
+↓
+AUDIT
+↓
+existing Constitution / AGENTS / .spec / stack
+↓
+detect conflicts/drift
+↓
+integrate without silent overwrite
+↓
+INITIALIZATION GATE
+```
 
-PASS only when the project can proceed with SDD without silent conflicts or missing prerequisites.
+## ACTIONS
 
-## Output
+El agente debe:
 
-Report:
-- project type
-- discovery findings
-- existing SDD artifacts
-- created/updated artifacts
-- conflicts/drift
-- initialization status
-- next action
+* inspeccionar el repositorio;
+* detectar el stack;
+* detectar `AGENTS.md`;
+* detectar Constitution;
+* detectar `.spec/`;
+* detectar decisiones existentes;
+* detectar conflictos;
+* detectar drift;
+* preparar la estructura mínima necesaria;
+* preparar Constitution y `AGENTS.md`;
+* dejar el proyecto preparado para `/sdd:new`.
 
-If blocked, state the exact reason and required decision.
+## RULE
+
+No sobrescribir silenciosamente artefactos existentes.

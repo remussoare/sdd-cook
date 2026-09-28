@@ -1,25 +1,23 @@
+---
+
+type: design-visual
+status: DRAFT
+-------------
+
 # Visual Design
 
 ## Visual Requirements
 
-## Visual States
+## States
 
-| State | Color | Style | Opacity |
-|---|---|---|---|
-| | | | |
+## Colors
 
-## Lines
+## Typography
 
-## Zones
+## Layout
 
-## Labels
+## Accessibility
 
-## Panels
-
-## Visibility Rules
-
-## Accessibility / Readability
-
-## Open Decisions
+## Design Decisions
 
 ## Traceability

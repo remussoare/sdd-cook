@@ -1,19 +1,15 @@
 # Interaction Design
 
-## Purpose
-
-Define interaction and presentation behavior when it forms part of the accepted product contract.
-
-## Interactions
-
-## Controls
+## Interaction
 
 ## States
 
+## Transitions
+
 ## Feedback
 
-## Visibility Rules
+## UX Decisions
 
-## Open Decisions
+## Design Decisions
 
 ## Traceability

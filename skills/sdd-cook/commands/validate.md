@@ -1,19 +1,53 @@
 # /sdd:validate
 
-## Purpose
+## PURPOSE
 
-Produce sufficient, reliable and traceable evidence that implementation satisfies accepted Specification and acceptance criteria in the relevant context.
+Validar la implementación contra los artefactos aceptados.
 
-## Procedure
+## INPUT
 
-1. Read Specification, Plan, Tests, Tasks and implementation state.
-2. Execute relevant unit, integration, scenario, regression, visual, performance, backtest or other evidence required by risk and accepted artifacts.
-3. Compare expected and actual results.
-4. Route failures to the earliest affected phase.
-5. Never declare PASS without sufficient evidence.
-6. On PASS, record Validation and transition the accepted state to LOCKED.
-7. On FAIL, BLOCKED or INCONCLUSIVE, do not lock.
+* Specification;
+* Plan;
+* Tests;
+* Tasks;
+* Implementation.
 
-## Important
+## ACTIONS
 
-TESTS PASS does not automatically mean Validation PASS.
+El agente debe:
+
+1. Ejecutar la verificación requerida.
+2. Comparar resultado esperado y resultado obtenido.
+3. Detectar fallos.
+4. Enrutar los fallos según su causa.
+5. Registrar evidencia.
+6. Determinar el estado de Validation.
+
+## STATES
+
+```text
+PASS
+FAIL
+BLOCKED
+INCONCLUSIVE
+```
+
+## RULES
+
+Nunca declarar `PASS` sin evidencia suficiente.
+
+Nunca ocultar una regresión.
+
+Nunca cerrar una decisión no resuelta.
+
+Una limitación del entorno no puede convertirse en `PASS`.
+
+## LOCK
+
+```text
+PASS
+↓
+LOCKED
+```
+
+`FAIL`, `BLOCKED` e `INCONCLUSIVE` no pueden producir `LOCKED`.

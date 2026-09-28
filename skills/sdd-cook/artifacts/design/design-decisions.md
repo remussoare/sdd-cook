@@ -2,10 +2,14 @@
 
 ## Decision
 
-- ID:
-- Context:
-- Decision:
-- Reason:
-- Alternatives considered:
-- Status: PROPOSED / ACCEPTED / REJECTED
-- Traceability:
+## Context
+
+## Alternatives
+
+## Derivation
+
+## Acceptance
+
+## Consequences
+
+## Traceability

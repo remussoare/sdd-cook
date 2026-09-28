@@ -1,26 +1,42 @@
 # /sdd:new
 
-## Purpose
+## PURPOSE
 
-Start a new component or evolution without inventing functional decisions.
+Iniciar un componente o una nueva evolución.
 
-## Invocation
+## INVOCATION
 
-`/sdd:new [name]`
+```text
+/sdd:new [name]
+```
 
-## Procedure
+## ACTIONS
 
-1. Inspect the project and `.spec/` state.
-2. Determine whether this is a new component or an evolution.
-3. Preserve previous accepted/LOCKED history when evolving existing work.
-4. Establish Objective only from supplied or already accepted information.
-5. Build Domain and Specification only when required decisions are derivable.
-6. If a required behavioral or scope decision is not derivable, BLOCK.
-7. Do not create Plan, Tests or Tasks merely because `/sdd:new` was invoked.
+El agente debe:
 
-## Forbidden
+1. Inspeccionar el proyecto.
+2. Inspeccionar `.spec/`.
+3. Determinar si se trata de:
 
-- invent requirements
-- silently modify LOCKED artifacts
-- decide ambiguous behavior
-- change scope or priorities without a decision
+   * nuevo componente;
+   * evolución de un componente existente.
+4. Preservar la historia de estados `LOCKED`.
+5. Crear el contexto mínimo necesario.
+6. Establecer o actualizar Objective únicamente con información suministrada o aceptada.
+7. Avanzar hacia Domain y Specification únicamente cuando las decisiones sean derivables.
+
+## FORBIDDEN
+
+No inventar decisiones funcionales.
+
+No crear automáticamente Plan ni Tasks.
+
+## BLOCK
+
+Si Domain o Specification requieren una decisión que no puede derivarse:
+
+```text
+BLOCKED
+```
+
+y solicitar la decisión necesaria.

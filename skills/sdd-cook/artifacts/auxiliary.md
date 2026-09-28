@@ -1,24 +1,35 @@
 # Auxiliary Artifacts
 
-Examples:
-- UML
-- diagrams
-- prototype
-- spike
-- ADR
-- impact analysis
-- change request
-- design artifacts
+Los artefactos auxiliares **no son fases del workflow**.
 
-They are created when they provide enough evidence, clarity or uncertainty reduction to justify their cost.
+Se crean únicamente cuando aportan:
 
-They are not workflow phases.
+* evidencia;
+* claridad;
+* reducción de incertidumbre;
 
-## Design artifacts
+suficiente para justificar su coste.
 
-Design may use dedicated artifacts such as:
-- `design/visual.md`
-- `design/interaction.md`
-- `design/design-decisions.md`
+## Available Auxiliary Artifacts
 
-These artifacts are optional and created only when design materially matters to the product.
+* UML
+* diagrams
+* prototypes
+* spikes
+* ADR
+* Change Request
+* Impact Analysis
+
+## SPIKE
+
+Un SPIKE se utiliza para investigar **incertidumbre técnica**.
+
+## PROTOTYPE
+
+Un PROTOTYPE se utiliza para investigar **incertidumbre de solución, diseño o UX**.
+
+## Rule
+
+Los artefactos auxiliares no deben convertirse en fases obligatorias del workflow.
+
+Se crean cuando son necesarios para el contexto.

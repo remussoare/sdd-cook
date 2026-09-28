@@ -1,23 +1,68 @@
 # /sdd:change
 
-## Purpose
+## PURPOSE
 
-Safely evolve accepted or LOCKED artifacts through explicit Change Management.
+Gestionar cambios sobre un estado aceptado o `LOCKED`.
 
-## Procedure
+## FLOW
 
-1. Identify the requested change.
-2. Classify its impact.
-3. If it affects behavior, scope, architecture or an accepted decision, create/use a Change Request.
-4. Perform Impact Analysis.
-5. If the decision is not derivable, BLOCK and request it.
-6. Never silently replace accepted artifacts.
-7. After approval, update affected artifacts with traceability.
-8. Re-plan, re-test, re-implement and re-validate as required.
-9. Preserve the previous accepted evolution.
+```text
+LOCKED
+↓
+CHANGE
+↓
+IMPACT ANALYSIS
+↓
+DECISION
+↓
+NEW EVOLUTION
+↓
+VALIDATION
+↓
+LOCKED v2
+```
 
-## Lifecycle
+Cuando el cambio requiere implementación:
 
-PROPOSED → ANALYZING → AWAITING_DECISION → APPROVED → IMPLEMENTING → VALIDATING → ACCEPTED
+```text
+NEW EVOLUTION
+↓
+PLAN
+↓
+TESTS
+↓
+TASKS
+↓
+IMPLEMENTATION
+↓
+VALIDATION
+↓
+LOCKED v2
+```
 
-Terminal alternatives: REJECTED / CANCELLED / BLOCKED
+## ACTIONS
+
+1. Identificar el cambio solicitado.
+2. Clasificar su impacto.
+3. Si afecta comportamiento, alcance, arquitectura o una decisión aceptada, crear Change Request.
+4. Realizar Impact Analysis.
+5. Solicitar una decisión cuando el cambio no sea derivable.
+6. Nunca sustituir silenciosamente un artefacto aceptado.
+7. Actualizar manteniendo trazabilidad.
+8. Replanificar, probar, implementar y validar cuando corresponda.
+9. Preservar la evolución anterior.
+
+## STATUSES
+
+```text
+PROPOSED
+ANALYZING
+AWAITING_DECISION
+APPROVED
+IMPLEMENTING
+VALIDATING
+ACCEPTED
+REJECTED
+CANCELLED
+BLOCKED
+```

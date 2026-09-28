@@ -1,23 +1,47 @@
 # /sdd:plan
 
-## Purpose
+## PURPOSE
 
-Transform accepted Specification into an executable path: Plan → Tests → Tasks.
+Transformar una Specification aceptada en:
 
-## Procedure
+```text
+PLAN
+↓
+TESTS
+↓
+TASKS
+```
 
-1. Read Objective, Domain, Specification and accepted decisions.
-2. Verify that behavior is sufficiently specified.
-3. BLOCK if a behavioral decision is missing.
-4. Define work order, dependencies, verification strategy, appropriate rigor, risks and required auxiliary artifacts.
-5. Define Tests directly from Specification.
-6. Define Tasks from Plan and Tests.
-7. Preserve traceability.
-8. Do not implement code.
+## INPUT
 
-## Forbidden
+* Objective;
+* Domain;
+* Specification;
+* decisiones aceptadas.
 
-- changing Specification
-- adding behavior
-- changing scope or priorities
-- executing implementation
+## ACTIONS
+
+El agente debe:
+
+1. Leer los artefactos aceptados.
+2. Comprobar que Specification es suficientemente completa.
+3. Bloquear si existe ambigüedad funcional.
+4. Crear Plan.
+5. Definir orden y dependencias.
+6. Definir estrategia de verificación.
+7. Definir el rigor necesario.
+8. Crear Tests.
+9. Crear Tasks.
+10. Mantener trazabilidad.
+
+## FORBIDDEN
+
+No modificar el comportamiento definido por Specification.
+
+No implementar.
+
+No inventar decisiones funcionales.
+
+## OUTPUT
+
+Plan, Tests y Tasks listos para ejecución.

@@ -1,29 +1,15 @@
 # Visual Design
 
-## Purpose
-
-Define visual presentation decisions that are part of the accepted product contract without creating a new workflow phase.
-
 ## Visual Requirements
 
-## Visual States
+## Colors
 
-| State | Color | Style | Opacity |
-|---|---|---|---|
-| | | | |
+## Typography
 
-## Lines
+## Layout
 
-## Zones
+## States
 
-## Labels
-
-## Panels
-
-## Visibility Rules
-
-## Accessibility / Readability
-
-## Open Decisions
+## Design Decisions
 
 ## Traceability

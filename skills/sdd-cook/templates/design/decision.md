@@ -1,15 +1,21 @@
-# Design Decision
+---
 
-## ID
+type: design-decisions
+status: DRAFT
+-------------
 
-## Context
+# Design Decisions
 
 ## Decision
 
-## Reason
+## Context
 
-## Alternatives Considered
+## Alternatives
 
-## Status
+## Derivation
+
+## Acceptance
+
+## Consequences
 
 ## Traceability
