@@ -1,0 +1,21 @@
+# built binaries
+sdd
+sdd.exe
+sdd-*
+dist/
+
+# local SDD state (per-project, not the toolkit itself)
+.spec/
+
+# Go
+*.test
+*.out
+
+# OS
+.DS_Store
+Thumbs.db
+
+# editors
+.vscode/
+.idea/
+*.swp
