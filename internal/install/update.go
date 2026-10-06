@@ -17,7 +17,6 @@ func Update(o Options) error {
 		return fmt.Errorf("no installations tracked — run: sdd install")
 	}
 	p := newPrompter(o.Stdin, o.out())
-	interactive := p.interactive() && !o.Yes
 
 	var plans []*Plan
 	for _, rec := range recs {
@@ -34,8 +33,11 @@ func Update(o Options) error {
 		fmt.Fprintln(o.out(), "dry-run: nothing applied.")
 		return nil
 	}
-	confirmed := o.Yes || !interactive
+	confirmed := o.Yes
 	if !confirmed {
+		if !p.interactive() {
+			return fmt.Errorf("refusing to apply in non-interactive mode without --yes — pass --yes to confirm, or run interactively")
+		}
 		var parts []string
 		for _, plan := range plans {
 			parts = append(parts, summarize(plan))
@@ -64,7 +66,7 @@ func Update(o Options) error {
 		if NewerThan(version.Version, tag) {
 			fmt.Fprintf(o.out(), "newer sdd available: %s (installed %s)\n", tag, version.Version)
 			fmt.Fprintln(o.out(), "upgrade, then re-run: sdd update")
-			fmt.Fprintln(o.out(), "  go install github.com/remussoare/sdd-cook@latest")
+			fmt.Fprintln(o.out(), "  go install github.com/remussoare/sdd-cook/cmd/sdd@latest")
 		} else {
 			fmt.Fprintf(o.out(), "sdd is up to date (%s)\n", version.Version)
 		}

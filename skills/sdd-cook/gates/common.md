@@ -1,6 +1,6 @@
 # Common Gates
 
-Todos los gates utilizan uno de estos resultados:
+All gates use one of these outcomes:
 
 ```text
 PASS
@@ -11,18 +11,18 @@ INCONCLUSIVE
 
 ## PASS
 
-La fase cumple sus criterios y puede continuar.
+The phase meets its criteria and may continue.
 
 ## FAIL
 
-La fase no cumple sus criterios.
+The phase does not meet its criteria.
 
-Debe diagnosticarse y corregirse antes de continuar.
+It must be diagnosed and corrected before continuing.
 
 ## BLOCKED
 
-No se puede continuar porque falta una decisión, información o condición necesaria.
+Progress cannot continue because a decision, information or necessary condition is missing.
 
 ## INCONCLUSIVE
 
-La evidencia disponible no permite determinar de forma fiable si la fase cumple sus criterios.
+The available evidence does not allow reliably determining whether the phase meets its criteria.

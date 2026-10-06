@@ -2,7 +2,7 @@
 
 ## PURPOSE
 
-Iniciar un componente o una nueva evolución.
+Start a component or a new evolution.
 
 ## INVOCATION
 
@@ -12,31 +12,31 @@ Iniciar un componente o una nueva evolución.
 
 ## ACTIONS
 
-El agente debe:
+The agent must:
 
-1. Inspeccionar el proyecto.
-2. Inspeccionar `.spec/`.
-3. Determinar si se trata de:
+1. Inspect the project.
+2. Inspect `.spec/`.
+3. Determine whether this is:
 
-   * nuevo componente;
-   * evolución de un componente existente.
-4. Preservar la historia de estados `LOCKED`.
-5. Crear el contexto mínimo necesario.
-6. Establecer o actualizar Objective únicamente con información suministrada o aceptada.
-7. Avanzar hacia Domain y Specification únicamente cuando las decisiones sean derivables.
+   * a new component;
+   * an evolution of an existing component.
+4. Preserve the history of `LOCKED` states.
+5. Create the minimal necessary context.
+6. Establish or update the Objective only with supplied or accepted information.
+7. Advance towards Domain and Specification only when decisions are derivable.
 
 ## FORBIDDEN
 
-No inventar decisiones funcionales.
+Never invent functional decisions.
 
-No crear automáticamente Plan ni Tasks.
+Never automatically create a Plan or Tasks.
 
 ## BLOCK
 
-Si Domain o Specification requieren una decisión que no puede derivarse:
+If Domain or Specification require a decision that cannot be derived:
 
 ```text
 BLOCKED
 ```
 
-y solicitar la decisión necesaria.
+and request the necessary decision.

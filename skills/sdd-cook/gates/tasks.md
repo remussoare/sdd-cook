@@ -2,4 +2,4 @@
 
 ## Criterion
 
-¿Las Tasks forman unidades de implementación completas, coherentes y trazables sin introducir comportamiento nuevo?
+Do the Tasks form complete, coherent and traceable implementation units without introducing new behavior?

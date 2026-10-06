@@ -2,7 +2,7 @@
 
 ## PURPOSE
 
-Validar la implementación contra los artefactos aceptados.
+Validate the implementation against the accepted artifacts.
 
 ## INPUT
 
@@ -14,14 +14,14 @@ Validar la implementación contra los artefactos aceptados.
 
 ## ACTIONS
 
-El agente debe:
+The agent must:
 
-1. Ejecutar la verificación requerida.
-2. Comparar resultado esperado y resultado obtenido.
-3. Detectar fallos.
-4. Enrutar los fallos según su causa.
-5. Registrar evidencia.
-6. Determinar el estado de Validation.
+1. Run the required verification.
+2. Compare expected and actual results.
+3. Detect failures.
+4. Route failures according to their cause.
+5. Record evidence.
+6. Determine the Validation state.
 
 ## STATES
 
@@ -34,13 +34,13 @@ INCONCLUSIVE
 
 ## RULES
 
-Nunca declarar `PASS` sin evidencia suficiente.
+Never declare `PASS` without sufficient evidence.
 
-Nunca ocultar una regresión.
+Never hide a regression.
 
-Nunca cerrar una decisión no resuelta.
+Never close an unresolved decision.
 
-Una limitación del entorno no puede convertirse en `PASS`.
+An environment limitation cannot be turned into `PASS`.
 
 ## LOCK
 
@@ -50,4 +50,4 @@ PASS
 LOCKED
 ```
 
-`FAIL`, `BLOCKED` e `INCONCLUSIVE` no pueden producir `LOCKED`.
+`FAIL`, `BLOCKED` and `INCONCLUSIVE` cannot produce `LOCKED`.

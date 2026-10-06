@@ -24,7 +24,33 @@ if ($Version -eq "latest") {
 New-Item -ItemType Directory -Force -Path $BinDir | Out-Null
 $Dest = Join-Path $BinDir "sdd.exe"
 Write-Host "downloading sdd (windows/$Arch) to $Dest ..."
-Invoke-WebRequest -Uri $Url -OutFile $Dest
+$Tmp = New-TemporaryFile
+Invoke-WebRequest -UseBasicParsing -Uri $Url -OutFile $Tmp
+
+# Verify the checksum against the release SHA256SUMS when available.
+$SumsUrl = $Url.Substring(0, $Url.LastIndexOf('/')) + "/SHA256SUMS"
+$Verified = $false
+try {
+  $Sums = (Invoke-WebRequest -UseBasicParsing -Uri $SumsUrl).Content
+  $Line = ($Sums -split "`n") | Where-Object { $_ -match [regex]::Escape($Asset) } | Select-Object -First 1
+  if ($Line) {
+    $Expected = ($Line -split '\s+')[0].Trim()
+    $Actual = (Get-FileHash -Algorithm SHA256 $Tmp).Hash.ToLower()
+    if ($Actual -ne $Expected.ToLower()) {
+      Write-Error "checksum mismatch (expected $Expected, got $Actual)"
+      exit 1
+    }
+    Write-Host "checksum ok"
+    $Verified = $true
+  }
+} catch {
+  Write-Warning "SHA256SUMS unavailable for this release — skipping checksum verification"
+}
+if (-not $Verified) {
+  Write-Warning "binary downloaded WITHOUT checksum verification"
+}
+
+Move-Item -Force $Tmp $Dest
 
 $PathParts = $env:PATH -split ";"
 if ($PathParts -notcontains $BinDir) {

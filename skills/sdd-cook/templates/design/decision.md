@@ -1,8 +1,8 @@
 ---
 
-type: design-decisions
+artifact: design-decisions
 status: DRAFT
--------------
+---
 
 # Design Decisions
 

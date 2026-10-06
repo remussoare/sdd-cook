@@ -22,9 +22,9 @@ VALIDATION
 LOCKED
 ```
 
-`LOCKED` es un estado del ciclo de vida, no una fase.
+`LOCKED` is a lifecycle state, not a phase.
 
-Cada fase define:
+Each phase defines:
 
 ```text
 PURPOSE
@@ -37,4 +37,4 @@ OUTPUT
 GATE
 ```
 
-La autoridad de cada fase está definida en `principles/authority.md`.
+The authority of each phase is defined in `principles/authority.md`.

@@ -29,8 +29,11 @@ LOCKED is a lifecycle state, not a phase. After LOCKED, evolution goes
 through Change Management:
 
 ```text
-LOCKED → CHANGE → IMPACT ANALYSIS → DECISION → NEW EVOLUTION → VALIDATION → LOCKED
+LOCKED → CHANGE → IMPACT ANALYSIS → DECISION → NEW EVOLUTION → PLAN → TESTS → TASKS → IMPLEMENTATION → VALIDATION → LOCKED vN
 ```
+
+When the change has no implementation impact, the new evolution goes straight
+to VALIDATION.
 
 ## Skill commands (`/sdd:*`)
 
@@ -125,7 +128,7 @@ the skill payload. Re-running is idempotent.
 Go developers:
 
 ```sh
-go install github.com/remussoare/sdd-cook@latest
+go install github.com/remussoare/sdd-cook/cmd/sdd@latest
 sdd install
 ```
 
@@ -161,8 +164,8 @@ Then work with the agent: `/sdd:new`, `/sdd:plan`, `/sdd:run`, `/sdd:validate`,
 ## Update
 
 ```sh
+go install github.com/remussoare/sdd-cook/cmd/sdd@latest   # upgrade the CLI first
 sdd update              # re-apply skill payloads to tracked installs
-go install github.com/remussoare/sdd-cook@latest   # upgrade the CLI first
 ```
 
 `sdd update` also reports when a newer release exists.

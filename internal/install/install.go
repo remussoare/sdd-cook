@@ -117,7 +117,11 @@ func Run(o Options) error {
 			if strings.ToLower(v) == "all" {
 				hosts = transpile.HostIDs()
 			} else {
-				hosts = strings.Split(v, ",")
+				parts := strings.Split(v, ",")
+				for i, h := range parts {
+					parts[i] = strings.TrimSpace(h)
+				}
+				hosts = parts
 			}
 		}
 	}
@@ -169,8 +173,11 @@ func Run(o Options) error {
 		fmt.Fprintln(o.out(), "dry-run: nothing applied.")
 		return nil
 	}
-	confirmed := o.Yes || !interactive
+	confirmed := o.Yes
 	if !confirmed {
+		if !p.interactive() {
+			return fmt.Errorf("refusing to apply in non-interactive mode without --yes — pass --yes to confirm, or run interactively")
+		}
 		confirmed = p.askConfirm(summarize(plan))
 	}
 	if !confirmed {

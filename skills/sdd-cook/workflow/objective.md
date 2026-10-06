@@ -2,71 +2,71 @@
 
 ## PURPOSE
 
-Definir con precisión qué problema está autorizado a resolver el agente.
+Define precisely which problem the agent is authorized to solve.
 
-El Objective establece:
+The Objective establishes:
 
-* propósito;
-* alcance;
-* fuera de alcance;
-* restricciones;
-* criterios de aceptación.
+* purpose;
+* scope;
+* out of scope;
+* constraints;
+* acceptance criteria.
 
-No diseña el dominio ni la solución.
+It does not design the domain or the solution.
 
 ## INPUT
 
-* petición del usuario;
-* contexto aceptado del proyecto;
-* restricciones existentes;
-* decisiones previamente aceptadas cuando sean relevantes.
+* the user request;
+* accepted project context;
+* existing constraints;
+* previously accepted decisions when relevant.
 
 ## ANALYSIS
 
-El agente debe:
+The agent must:
 
-* estructurar la información existente;
-* eliminar ambigüedad lingüística;
-* separar alcance y fuera de alcance;
-* derivar criterios de aceptación directamente;
-* detectar contradicciones;
-* detectar información necesaria que falta;
-* identificar decisiones abiertas.
+* structure the existing information;
+* remove linguistic ambiguity;
+* separate scope from out of scope;
+* derive acceptance criteria directly;
+* detect contradictions;
+* detect missing necessary information;
+* identify open decisions.
 
 ## ALLOWED
 
-El agente puede:
+The agent may:
 
-* reorganizar información;
-* mejorar precisión lingüística;
-* separar alcance y fuera de alcance;
-* derivar criterios de aceptación directamente implícitos;
-* adaptar el nivel de detalle;
-* proponer una estructura más clara.
+* reorganize information;
+* improve linguistic precision;
+* separate scope from out of scope;
+* derive directly implicit acceptance criteria;
+* adapt the level of detail;
+* propose a clearer structure.
 
 ## FORBIDDEN
 
-El agente no puede:
+The agent may not:
 
-* inventar requisitos;
-* ampliar el alcance;
-* reducir el alcance;
-* cambiar prioridades;
-* inventar restricciones;
-* asumir decisiones;
-* convertir una recomendación técnica en requisito funcional;
-* eliminar una restricción existente;
-* modificar el objetivo para facilitar la implementación.
+* invent requirements;
+* expand scope;
+* reduce scope;
+* change priorities;
+* invent constraints;
+* assume decisions;
+* turn a technical recommendation into a functional requirement;
+* remove an existing constraint;
+* modify the objective to make implementation easier.
 
 ## ACTIONS
 
-1. Analizar la petición.
-2. Identificar objetivo y alcance.
-3. Separar lo que queda fuera.
-4. Identificar restricciones.
-5. Derivar criterios de aceptación.
-6. Detectar decisiones abiertas.
-7. Crear o actualizar el Objective.
+1. Analyze the request.
+2. Identify objective and scope.
+3. Separate what remains out of scope.
+4. Identify constraints.
+5. Derive acceptance criteria.
+6. Detect open decisions.
+7. Create or update the Objective.
 
 ## OUTPUT
 
@@ -83,4 +83,4 @@ TRACEABILITY
 
 ## GATE
 
-> ¿El objetivo define suficientemente el problema, alcance, restricciones y criterios de aceptación para continuar sin inventar decisiones?
+> Does the Objective define the problem, scope, constraints and acceptance criteria sufficiently well to continue without inventing decisions?

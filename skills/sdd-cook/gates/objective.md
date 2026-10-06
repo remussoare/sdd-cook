@@ -2,11 +2,11 @@
 
 ## Criterion
 
-¿El Objective define suficientemente:
+Does the Objective define sufficiently:
 
-* el problema;
-* el alcance;
-* las restricciones;
-* los criterios de aceptación;
+* the problem;
+* the scope;
+* the constraints;
+* the acceptance criteria;
 
-para continuar sin inventar decisiones?
+to continue without inventing decisions?

@@ -2,48 +2,48 @@
 
 ## PURPOSE
 
-Convertir el Plan en unidades coherentes y ejecutables de implementación.
+Turn the Plan into coherent, executable implementation units.
 
-Una Task puede cubrir varios Tests o partes relacionadas de una Specification.
+A Task may cover several Tests or related parts of a Specification.
 
 ## INPUT
 
-* Plan aceptado;
-* Tests definidos;
-* Specification aceptada.
+* accepted Plan;
+* defined Tests;
+* accepted Specification.
 
 ## ANALYSIS
 
-Agrupar el trabajo en unidades coherentes considerando:
+Group work into coherent units considering:
 
-* alcance;
-* dependencia;
-* resultado esperado;
-* relación con Tests.
+* scope;
+* dependency;
+* expected result;
+* relationship with Tests.
 
 ## ALLOWED
 
-El agente puede:
+The agent may:
 
-* agrupar trabajo;
-* dividir trabajo;
-* establecer dependencias;
-* elegir una descomposición técnica coherente.
+* group work;
+* split work;
+* establish dependencies;
+* choose a coherent technical decomposition.
 
 ## FORBIDDEN
 
-El agente no puede:
+The agent may not:
 
-* introducir comportamiento;
-* crear decisiones funcionales;
-* modificar Specification;
-* ampliar el alcance.
+* introduce behavior;
+* create functional decisions;
+* modify the Specification;
+* expand scope.
 
-Toda decisión funcional de una Task debe poder trazarse a Specification aceptada.
+Every functional decision in a Task must be traceable to accepted Specification.
 
 ## OUTPUT
 
-Cada Task contiene:
+Each Task contains:
 
 ```text
 TASK
@@ -58,4 +58,4 @@ TASK
 
 ## GATE
 
-> ¿Las Tasks son completas, coherentes, ejecutables y trazables sin introducir nuevo comportamiento?
+> Are the Tasks complete, coherent, executable and traceable without introducing new behavior?

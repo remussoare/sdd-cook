@@ -1,8 +1,8 @@
 ---
 
-type: design-visual
+artifact: design-visual
 status: DRAFT
--------------
+---
 
 # Visual Design
 

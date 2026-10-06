@@ -1,33 +1,33 @@
 # Design
 
-Design es una **capacidad transversal**, no una fase nueva del workflow.
+Design is a **transversal capability**, not a new workflow phase.
 
-Se utiliza cuando existen decisiones relacionadas con:
+It is used when decisions related to:
 
-* requisitos visuales;
-* decisiones de diseño;
-* colores;
-* tipografía;
+* visual requirements;
+* design decisions;
+* colors;
+* typography;
 * layout;
-* estados visuales;
-* interacción;
+* visual states;
+* interaction;
 * UX.
 
 ## Decision Rule
 
-```text id="5v8h2q"
-¿La decisión visual es derivable?
+```text
+Is the visual decision derivable?
 
 YES → decide and continue
 
 NO → propose → decision
 ```
 
-Cuando una decisión visual no es derivable, el agente puede proponerla, pero la elección aceptada se convierte en una decisión de diseño.
+When a visual decision is not derivable, the agent may propose it, but the accepted choice becomes a design decision. In `/sdd:plan`, a non-derivable visual request blocks Plan creation until the missing visual information is provided and accepted; it is recorded here (`design/visual.md`) as an auxiliary artifact, never as a silent Plan assumption.
 
 ## Traceability
 
-```text id="j2h8p4"
+```text
 SPECIFICATION
       ↓
 DESIGN DECISION
@@ -41,4 +41,4 @@ IMPLEMENTATION
 VALIDATION
 ```
 
-Design no modifica el workflow principal.
+Design does not modify the main workflow.

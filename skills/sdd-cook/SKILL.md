@@ -405,7 +405,7 @@ DECIDE   PROPOSE
 CONTINUE  DECISION
 ```
 
-Non-derivable design decisions require acceptance.
+Non-derivable design decisions require acceptance. Transversal does not mean inventable: in `/sdd:plan`, a non-derivable visual request blocks Plan/Tests/Tasks creation until the missing visual information is provided and accepted.
 
 Design traceability may be:
 

@@ -2,72 +2,72 @@
 
 ## PURPOSE
 
-Construir el modelo conceptual del problema.
+Build the conceptual model of the problem.
 
-Domain define:
+Domain defines:
 
-* conceptos;
-* entidades;
+* concepts;
+* entities;
 * value objects;
-* relaciones;
-* estados conceptuales;
-* invariantes;
-* límites del dominio;
-* lenguaje común.
+* relationships;
+* conceptual states;
+* invariants;
+* domain boundaries;
+* common language.
 
-La profundidad DDD se adapta a la complejidad real del problema.
+DDD depth adapts to the real complexity of the problem.
 
 ## INPUT
 
-* Objective aceptado;
-* conocimiento de dominio disponible;
-* decisiones aceptadas.
+* accepted Objective;
+* available domain knowledge;
+* accepted decisions.
 
 ## ANALYSIS
 
-Identificar:
+Identify:
 
-* conceptos principales;
-* entidades;
+* core concepts;
+* entities;
 * value objects;
-* relaciones;
-* límites;
-* estados conceptuales;
-* invariantes;
-* posibles conflictos semánticos.
+* relationships;
+* boundaries;
+* conceptual states;
+* invariants;
+* potential semantic conflicts.
 
 ## ALLOWED
 
-El agente puede:
+The agent may:
 
-* identificar conceptos derivados del Objective;
-* estructurar entidades;
-* identificar relaciones;
-* identificar value objects;
-* establecer estructura conceptual;
-* derivar invariantes conceptuales cuando estén claramente implícitos;
-* adaptar la profundidad del modelo a la complejidad.
+* identify concepts derived from the Objective;
+* structure entities;
+* identify relationships;
+* identify value objects;
+* establish the conceptual structure;
+* derive conceptual invariants when they are clearly implicit;
+* adapt the depth of the model to the complexity.
 
 ## FORBIDDEN
 
-El agente no puede:
+The agent may not:
 
-* inventar reglas de comportamiento;
-* inventar estados de comportamiento;
-* inventar transiciones;
-* resolver ambigüedades semánticas mediante una suposición cuando afecten al comportamiento;
-* introducir requisitos funcionales.
+* invent behavior rules;
+* invent behavioral states;
+* invent transitions;
+* resolve semantic ambiguities through an assumption when they affect behavior;
+* introduce functional requirements.
 
 ## ACTIONS
 
-1. Leer Objective.
-2. Identificar conceptos.
-3. Identificar entidades y value objects.
-4. Establecer relaciones.
-5. Identificar estados conceptuales e invariantes.
-6. Detectar conflictos.
-7. Registrar decisiones abiertas.
-8. Preparar el dominio para Specification.
+1. Read the Objective.
+2. Identify concepts.
+3. Identify entities and value objects.
+4. Establish relationships.
+5. Identify conceptual states and invariants.
+6. Detect conflicts.
+7. Record open decisions.
+8. Prepare the domain for Specification.
 
 ## OUTPUT
 
@@ -90,4 +90,4 @@ NEXT ACTION
 
 ## GATE
 
-> ¿Existe suficiente claridad conceptual para especificar el comportamiento sin inventar conceptos ni decisiones?
+> Is there sufficient conceptual clarity to specify behavior without inventing concepts or decisions?

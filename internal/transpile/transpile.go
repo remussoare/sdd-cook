@@ -198,7 +198,8 @@ func commandIndex(skill fs.FS) (string, error) {
 	return b.String(), nil
 }
 
-// purposeOf extracts the "## Purpose" paragraph of commands/<cmd>.md.
+// purposeOf extracts the "## PURPOSE" paragraph of commands/<cmd>.md. The
+// heading match is case-insensitive: command docs use uppercase headings.
 func purposeOf(skill fs.FS, cmd string) string {
 	data, err := fs.ReadFile(skill, "commands/"+cmd+".md")
 	if err != nil {
@@ -213,7 +214,7 @@ func purposeOf(skill fs.FS, cmd string) string {
 			if inPurpose {
 				break
 			}
-			if t == "## Purpose" {
+			if strings.EqualFold(strings.TrimPrefix(t, "## "), "purpose") {
 				inPurpose = true
 			}
 			continue

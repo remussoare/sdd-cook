@@ -1,8 +1,8 @@
 ---
 
-type: specification
+artifact: specification
 status: DRAFT
--------------
+---
 
 # Specification
 

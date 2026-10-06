@@ -2,79 +2,79 @@
 
 ## PURPOSE
 
-Definir el contrato de comportamiento de forma explícita y determinista.
+Define the behavioral contract explicitly and deterministically.
 
-Specification establece:
+Specification establishes:
 
-* reglas;
-* condiciones;
-* entradas;
-* salidas;
-* precondiciones;
-* postcondiciones;
-* estados;
-* transiciones;
-* invariantes;
-* errores;
+* rules;
+* conditions;
+* inputs;
+* outputs;
+* preconditions;
+* postconditions;
+* states;
+* transitions;
+* invariants;
+* errors;
 * edge cases;
-* dependencias de comportamiento.
+* behavioral dependencies.
 
 ## INPUT
 
-* Objective aceptado;
-* Domain aceptado;
-* decisiones aceptadas.
+* accepted Objective;
+* accepted Domain;
+* accepted decisions.
 
 ## ANALYSIS
 
-El agente debe convertir el modelo conceptual en comportamiento verificable.
+The agent must turn the conceptual model into verifiable behavior.
 
-Debe identificar:
+It must identify:
 
-* qué ocurre;
-* cuándo ocurre;
-* bajo qué condiciones;
-* qué entradas son necesarias;
-* qué resultado se espera;
-* qué estados existen;
-* cómo se producen las transiciones;
-* qué errores son posibles;
-* qué casos límite deben contemplarse.
+* what happens;
+* when it happens;
+* under which conditions;
+* which inputs are required;
+* which result is expected;
+* which states exist;
+* how transitions occur;
+* which errors are possible;
+* which edge cases must be considered.
 
 ## ALLOWED
 
-El agente puede:
+The agent may:
 
-* hacer explícitas reglas derivables;
-* dividir comportamiento complejo;
-* eliminar ambigüedad lingüística;
-* estructurar condiciones;
-* definir casos derivados directamente del comportamiento aceptado.
+* make derivable rules explicit;
+* split complex behavior;
+* remove linguistic ambiguity;
+* structure conditions;
+* define cases derived directly from accepted behavior.
 
 ## FORBIDDEN
 
-El agente no puede:
+The agent may not:
 
-* usar la implementación como autoridad;
-* inventar comportamiento;
-* inventar estados;
-* inventar transiciones;
-* introducir requisitos;
-* modificar el comportamiento para adaptarlo a la implementación;
-* resolver una ambigüedad funcional mediante una suposición.
+* use the implementation as authority;
+* invent behavior;
+* invent states;
+* invent transitions;
+* introduce requirements;
+* modify behavior to fit the implementation;
+* resolve a functional ambiguity through an assumption.
 
 ## ACTIONS
 
-1. Leer Objective y Domain.
-2. Identificar comportamiento.
-3. Definir reglas deterministas.
-4. Definir inputs y outputs.
-5. Definir estados y transiciones cuando correspondan.
-6. Definir invariantes.
-7. Definir errores y edge cases.
-8. Identificar dependencias.
-9. Registrar decisiones abiertas.
-10. Preparar Specification para planificación y verificación.
+1. Read the Objective and the Domain.
+2. Identify behavior.
+3. Define deterministic rules.
+4. Define inputs and outputs.
+5. Define states and transitions where applicable.
+6. Define invariants.
+7. Define errors and edge cases.
+8. Identify dependencies.
+9. Record open decisions.
+10. Prepare the Specification for planning and verification.
 
 ## OUTPUT
 
@@ -100,4 +100,4 @@ NEXT ACTION
 
 ## GATE
 
-> ¿El comportamiento puede convertirse en una verificación determinista sin introducir suposiciones no aceptadas?
+> Can the behavior be turned into deterministic verification without introducing unsupported assumptions?

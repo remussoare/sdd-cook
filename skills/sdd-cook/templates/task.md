@@ -1,8 +1,8 @@
 ---
 
-type: task
+artifact: task
 status: DRAFT
--------------
+---
 
 # Task
 

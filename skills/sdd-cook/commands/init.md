@@ -2,9 +2,9 @@
 
 ## PURPOSE
 
-Inicializar o integrar SDD en un proyecto.
+Initialize or integrate SDD into a project.
 
-`/sdd:init` no crea un componente.
+`/sdd:init` does not create a component.
 
 ## PROJECT START
 
@@ -42,20 +42,20 @@ INITIALIZATION GATE
 
 ## ACTIONS
 
-El agente debe:
+The agent must:
 
-* inspeccionar el repositorio;
-* detectar el stack;
-* detectar `AGENTS.md`;
-* detectar Constitution;
-* detectar `.spec/`;
-* detectar decisiones existentes;
-* detectar conflictos;
-* detectar drift;
-* preparar la estructura mínima necesaria;
-* preparar Constitution y `AGENTS.md`;
-* dejar el proyecto preparado para `/sdd:new`.
+* inspect the repository;
+* detect the stack;
+* detect `AGENTS.md`;
+* detect the Constitution;
+* detect `.spec/`;
+* detect existing decisions;
+* detect conflicts;
+* detect drift;
+* prepare the minimal necessary structure;
+* prepare the Constitution and `AGENTS.md`;
+* leave the project ready for `/sdd:new`.
 
 ## RULE
 
-No sobrescribir silenciosamente artefactos existentes.
+Never silently overwrite existing artifacts.

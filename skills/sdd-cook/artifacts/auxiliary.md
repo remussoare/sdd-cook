@@ -1,14 +1,14 @@
 # Auxiliary Artifacts
 
-Los artefactos auxiliares **no son fases del workflow**.
+Auxiliary artifacts **are not workflow phases**.
 
-Se crean únicamente cuando aportan:
+They are created only when they provide sufficient:
 
-* evidencia;
-* claridad;
-* reducción de incertidumbre;
+* evidence;
+* clarity;
+* uncertainty reduction;
 
-suficiente para justificar su coste.
+to justify their cost.
 
 ## Available Auxiliary Artifacts
 
@@ -22,14 +22,14 @@ suficiente para justificar su coste.
 
 ## SPIKE
 
-Un SPIKE se utiliza para investigar **incertidumbre técnica**.
+A SPIKE is used to investigate **technical uncertainty**.
 
 ## PROTOTYPE
 
-Un PROTOTYPE se utiliza para investigar **incertidumbre de solución, diseño o UX**.
+A PROTOTYPE is used to investigate **solution, design or UX uncertainty**.
 
 ## Rule
 
-Los artefactos auxiliares no deben convertirse en fases obligatorias del workflow.
+Auxiliary artifacts must not become mandatory workflow phases.
 
-Se crean cuando son necesarios para el contexto.
+They are created when the context requires them.

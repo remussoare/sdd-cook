@@ -1,8 +1,8 @@
 # Impact Analysis
 
-Impact Analysis determina qué partes del sistema y del proceso pueden verse afectadas por un cambio.
+Impact Analysis determines which parts of the system and the process may be affected by a change.
 
-```text id="6v7xq1"
+```text
 IMPACT ANALYSIS
 CHANGE
 AFFECTED OBJECTIVE

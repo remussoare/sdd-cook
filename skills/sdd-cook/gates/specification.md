@@ -2,4 +2,4 @@
 
 ## Criterion
 
-¿El comportamiento puede convertirse en una verificación determinista sin utilizar suposiciones no soportadas?
+Can the behavior be turned into deterministic verification without using unsupported assumptions?

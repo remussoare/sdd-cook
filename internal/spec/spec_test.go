@@ -96,14 +96,73 @@ func TestSetStatus(t *testing.T) {
 }
 
 func TestNextEvolution(t *testing.T) {
-	if got := NextEvolution("v1"); got != "v2" {
-		t.Fatalf("expected v2, got %s", got)
+	if got, err := NextEvolution("v1"); err != nil || got != "v2" {
+		t.Fatalf("expected v2, got %s err=%v", got, err)
 	}
-	if got := NextEvolution("v9"); got != "v10" {
-		t.Fatalf("expected v10, got %s", got)
+	if got, err := NextEvolution("v9"); err != nil || got != "v10" {
+		t.Fatalf("expected v10, got %s err=%v", got, err)
 	}
-	if got := NextEvolution(""); got != "v1" {
-		t.Fatalf("expected v1, got %s", got)
+	if got, err := NextEvolution(""); err != nil || got != "v1" {
+		t.Fatalf("expected v1, got %s err=%v", got, err)
+	}
+	if got, err := NextEvolution("v1.2"); err == nil || got != "" {
+		t.Fatalf("expected error for non-integer evolution, got %s err=%v", got, err)
+	}
+}
+
+func TestParseQuotedStatus(t *testing.T) {
+	root := testRoot(t)
+	writeRawArtifact(t, root, "objective", "---\nartifact: objective\nstatus: \"DRAFT\"\n---\n\n# Body\n")
+	s, err := Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got := s.Artifacts["objective"].Status; got != Draft {
+		t.Fatalf("expected DRAFT for quoted status, got %s", got)
+	}
+}
+
+func TestParseDuplicateKeysInvalid(t *testing.T) {
+	root := testRoot(t)
+	writeRawArtifact(t, root, "objective", "---\nartifact: objective\nstatus: LOCKED\nstatus: DRAFT\n---\n\n# Body\n")
+	s, err := Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got := s.Artifacts["objective"].Status; got != Invalid {
+		t.Fatalf("expected INVALID for duplicate status keys, got %s", got)
+	}
+}
+
+func TestParseBOM(t *testing.T) {
+	root := testRoot(t)
+	writeRawArtifact(t, root, "objective", "\uFEFF---\nartifact: objective\nstatus: DRAFT\n---\n\n# Body\n")
+	s, err := Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got := s.Artifacts["objective"].Status; got != Draft {
+		t.Fatalf("expected DRAFT with BOM, got %s", got)
+	}
+}
+
+func TestParseCRLFAndSetStatus(t *testing.T) {
+	root := testRoot(t)
+	writeRawArtifact(t, root, "objective", "---\r\nartifact: objective\r\nstatus: DRAFT\r\n---\r\n\r\n# Body\r\n")
+	s, err := Load(root)
+	if err != nil {
+		t.Fatal(err)
+	}
+	a := s.Artifacts["objective"]
+	if got := a.Status; got != Draft {
+		t.Fatalf("expected DRAFT with CRLF, got %s", got)
+	}
+	if err := a.SetStatus(Accepted); err != nil {
+		t.Fatal(err)
+	}
+	s2, _ := Load(root)
+	if got := s2.Artifacts["objective"].Status; got != Accepted {
+		t.Fatalf("expected ACCEPTED after SetStatus with CRLF, got %s", got)
 	}
 }
 

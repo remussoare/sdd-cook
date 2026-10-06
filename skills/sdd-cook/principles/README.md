@@ -13,3 +13,4 @@ Core principles:
 * Drift Control
 * Traceability
 * Adaptive Rigor
+* Design Control

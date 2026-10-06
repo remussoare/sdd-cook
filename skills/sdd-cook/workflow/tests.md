@@ -2,55 +2,55 @@
 
 ## PURPOSE
 
-Proporcionar evidencia de que el comportamiento definido en Specification puede verificarse.
+Provide evidence that the behavior defined in the Specification can be verified.
 
-Tests no definen comportamiento.
+Tests do not define behavior.
 
 ## INPUT
 
-* Specification aceptada;
-* Plan aceptado.
+* accepted Specification;
+* accepted Plan.
 
 ## ANALYSIS
 
-Derivar casos de prueba directamente de Specification.
+Derive test cases directly from the Specification.
 
-Según corresponda:
+As applicable:
 
-* positivos;
-* negativos;
+* positive;
+* negative;
 * edge cases;
-* transiciones;
-* regresión;
+* transitions;
+* regression;
 * fixtures;
-* datos de prueba;
-* parametrización.
+* test data;
+* parametrization.
 
 ## ALLOWED
 
-El agente puede:
+The agent may:
 
-* derivar casos de prueba;
-* crear fixtures;
-* crear datos;
-* parametrizar pruebas;
-* organizar suites;
-* añadir pruebas de regresión derivadas del comportamiento existente;
-* mejorar determinismo de las pruebas.
+* derive test cases;
+* create fixtures;
+* create data;
+* parametrize tests;
+* organize suites;
+* add regression tests derived from existing behavior;
+* improve test determinism.
 
 ## FORBIDDEN
 
-El agente no puede:
+The agent may not:
 
-* inventar comportamiento;
-* introducir requisitos;
-* modificar Specification para que una prueba pase;
-* eliminar fallos;
-* modificar resultados esperados para adaptarlos a la implementación.
+* invent behavior;
+* introduce requirements;
+* modify the Specification to make a test pass;
+* delete failures;
+* modify expected results to fit the implementation.
 
 ## FAILURE ROUTING
 
-Cuando un Test falla:
+When a Test fails:
 
 ```text
 Implementation bug
@@ -81,4 +81,4 @@ NEXT ACTION
 
 ## GATE
 
-> ¿Los Tests proporcionan evidencia suficiente del comportamiento aceptado con el nivel de rigor requerido?
+> Do the Tests provide sufficient evidence of the accepted behavior at the required rigor level?

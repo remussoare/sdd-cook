@@ -8,9 +8,22 @@ Use design artifacts when visual presentation, interaction, readability or UX fo
 
 If a design decision is derivable from accepted artifacts, the agent may decide and continue.
 
-If it is not derivable and affects the accepted result, the agent must propose options and request a decision.
+If it is not derivable and affects the accepted result, the agent must propose options and request a decision. In `/sdd:plan` this means BLOCKED before creating the Plan: request the missing visual information first.
 
 A proposed color, layout, typography, visual state or interaction is not an accepted requirement until explicitly accepted or derivable from accepted artifacts.
+
+## Required visual information
+
+When blocking for visual input, request only what is missing and material to the result:
+
+- colors / palette (including dark/light when applicable);
+- typography;
+- layout and structure;
+- visual states;
+- references, mockups, or existing branding constraints;
+- accessibility minimum (contrast, readability).
+
+Record the accepted answers as design decisions (e.g. `design/visual.md` DRAFT) and reference them from the Plan. Do not invent them.
 
 ## Scope
 

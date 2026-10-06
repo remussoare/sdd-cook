@@ -118,12 +118,22 @@ func parseArtifact(a *Artifact) {
 		return
 	}
 	a.Body = body
+	seen := map[string]bool{}
 	for _, line := range fm {
 		k, v, ok := strings.Cut(line, ":")
 		if !ok {
 			continue
 		}
-		switch strings.ToLower(strings.TrimSpace(k)) {
+		key := strings.ToLower(strings.TrimSpace(k))
+		if seen[key] {
+			// Duplicate keys are ambiguous: SetStatus rewrites the first
+			// occurrence while parsing reads the last one.
+			a.Status = Invalid
+			return
+		}
+		seen[key] = true
+		v = unquote(v)
+		switch key {
 		case "component":
 			a.Component = strings.TrimSpace(v)
 		case "evolution":
@@ -146,7 +156,19 @@ func parseArtifact(a *Artifact) {
 	}
 }
 
+// unquote removes surrounding single or double quotes from a YAML scalar.
+func unquote(v string) string {
+	v = strings.TrimSpace(v)
+	if len(v) >= 2 {
+		if (v[0] == '"' && v[len(v)-1] == '"') || (v[0] == '\'' && v[len(v)-1] == '\'') {
+			return v[1 : len(v)-1]
+		}
+	}
+	return v
+}
+
 func splitFrontmatter(text string) (fm []string, body string, ok bool) {
+	text = strings.TrimPrefix(text, "\uFEFF")
 	lines := strings.Split(text, "\n")
 	i := 0
 	for i < len(lines) && strings.TrimSpace(lines[i]) == "" {
@@ -188,7 +210,12 @@ func (a *Artifact) SetStatus(s Status) error {
 		}
 		if inFM {
 			if k, _, ok := strings.Cut(t, ":"); ok && strings.ToLower(strings.TrimSpace(k)) == "status" {
-				lines[i] = "status: " + string(s)
+				// Preserve the original line ending (CRLF or LF).
+				if strings.HasSuffix(l, "\r") {
+					lines[i] = "status: " + string(s) + "\r"
+				} else {
+					lines[i] = "status: " + string(s)
+				}
 				return os.WriteFile(a.Path, []byte(strings.Join(lines, "\n")), 0o644)
 			}
 		}
@@ -206,14 +233,19 @@ func ChainAllLocked(s *Spec) bool {
 	return true
 }
 
-// NextEvolution returns the next evolution label (v1 -> v2).
-func NextEvolution(cur string) string {
+// NextEvolution returns the next evolution label (v1 -> v2). An empty label
+// starts the sequence at v1. Non-empty labels it cannot increment are an
+// error instead of silently resetting to v1.
+func NextEvolution(cur string) (string, error) {
+	if cur == "" {
+		return "v1", nil
+	}
 	if len(cur) > 1 && (cur[0] == 'v' || cur[0] == 'V') {
-		if n, err := strconv.Atoi(cur[1:]); err == nil {
-			return fmt.Sprintf("v%d", n+1)
+		if n, err := strconv.Atoi(cur[1:]); err == nil && n >= 0 {
+			return fmt.Sprintf("v%d", n+1), nil
 		}
 	}
-	return "v1"
+	return "", fmt.Errorf("cannot derive next evolution from %q (expected v<int>)", cur)
 }
 
 // CreateObjective writes a new objective draft. It never overwrites.
@@ -296,13 +328,19 @@ func ActiveChangeRequest(root string) (string, bool) {
 }
 
 func writeFileNew(p, content string) error {
-	if _, err := os.Stat(p); err == nil {
-		return fmt.Errorf("refusing to overwrite %s", p)
-	}
 	if err := os.MkdirAll(filepath.Dir(p), 0o755); err != nil {
 		return err
 	}
-	return os.WriteFile(p, []byte(content), 0o644)
+	f, err := os.OpenFile(p, os.O_CREATE|os.O_EXCL|os.O_WRONLY, 0o644)
+	if err != nil {
+		if os.IsExist(err) {
+			return fmt.Errorf("refusing to overwrite %s", p)
+		}
+		return err
+	}
+	defer f.Close()
+	_, err = f.WriteString(content)
+	return err
 }
 
 func slug(s string) string {

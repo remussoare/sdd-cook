@@ -1,8 +1,8 @@
 ---
 
-type: objective
+artifact: objective
 status: DRAFT
--------------
+---
 
 # Objective
 

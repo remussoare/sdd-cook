@@ -1,8 +1,8 @@
 ---
 
-type: domain
+artifact: domain
 status: DRAFT
--------------
+---
 
 # Domain
 

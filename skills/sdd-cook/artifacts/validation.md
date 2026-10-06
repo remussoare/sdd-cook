@@ -19,7 +19,6 @@ Validation must be proportional to the type, scope, and risk of the change.
 
 For changes to `.spec`, documentation, definitions, diagrams, naming, formatting, or other non-executable artifacts:
 
-* Do not run Python tests.
 * Do not run the full test suite.
 * Validate structure, references, consistency, and affected artifacts only.
 * Do not execute code unless execution is required to validate the artifact.

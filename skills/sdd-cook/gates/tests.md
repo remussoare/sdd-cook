@@ -2,4 +2,4 @@
 
 ## Criterion
 
-¿Los Tests proporcionan evidencia suficiente y trazable de la Specification sin introducir comportamiento nuevo?
+Do the Tests provide sufficient and traceable evidence of the Specification without introducing new behavior?

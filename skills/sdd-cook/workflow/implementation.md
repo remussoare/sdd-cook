@@ -2,37 +2,37 @@
 
 ## PURPOSE
 
-Realizar técnicamente las Tasks aceptadas.
+Technically realize the accepted Tasks.
 
-Implementation convierte las decisiones aceptadas en código o configuración ejecutable.
+Implementation turns accepted decisions into executable code or configuration.
 
 ## INPUT
 
-* Tasks aceptadas;
+* accepted Tasks;
 * Specification;
 * Tests;
-* restricciones técnicas del proyecto.
+* technical constraints of the project.
 
 ## ANALYSIS
 
-Determinar la realización técnica sin cambiar el comportamiento aceptado.
+Determine the technical realization without changing accepted behavior.
 
 ## ALLOWED
 
-El agente puede:
+The agent may:
 
-* escribir código;
-* refactorizar;
-* optimizar;
-* cambiar estructuras internas;
-* cambiar nombres;
-* crear abstracciones;
-* reutilizar componentes;
-* corregir bugs de implementación.
+* write code;
+* refactor;
+* optimize;
+* change internal structures;
+* change names;
+* create abstractions;
+* reuse components;
+* fix implementation bugs.
 
 ## REFACTORING
 
-Un refactor es válido cuando:
+A refactor is valid when:
 
 ```text
 BEHAVIOR BEFORE = BEHAVIOR AFTER
@@ -40,32 +40,32 @@ BEHAVIOR BEFORE = BEHAVIOR AFTER
 
 ## FORBIDDEN
 
-El agente no puede:
+The agent may not:
 
-* cambiar reglas;
-* cambiar estados;
-* cambiar transiciones;
-* cambiar outputs;
-* cambiar errores;
-* cambiar prioridades;
-* cambiar alcance;
-* cambiar criterios de aceptación;
-* modificar Tests para ocultar fallos;
-* modificar Specification para justificar código;
-* añadir comportamiento no especificado;
-* resolver ambigüedad funcional;
-* cambiar arquitectura cuando el cambio requiere una decisión no aceptada.
+* change rules;
+* change states;
+* change transitions;
+* change outputs;
+* change errors;
+* change priorities;
+* change scope;
+* change acceptance criteria;
+* modify Tests to hide failures;
+* modify the Specification to justify code;
+* add unspecified behavior;
+* resolve functional ambiguity;
+* change architecture when the change requires a non-accepted decision.
 
 ## ACTIONS
 
-1. Seleccionar Tasks autorizadas.
-2. Implementarlas.
-3. Ejecutar Tests relevantes.
-4. Comparar resultados con expectativas.
-5. Detectar drift.
-6. Reportar archivos modificados.
-7. Reportar Tasks completadas.
-8. Preparar evidencia para Validation.
+1. Select authorized Tasks.
+2. Implement them.
+3. Run the relevant Tests.
+4. Compare results with expectations.
+5. Detect drift.
+6. Report modified files.
+7. Report completed Tasks.
+8. Prepare evidence for Validation.
 
 ## OUTPUT
 
@@ -85,18 +85,18 @@ NEXT ACTION
 
 ## GATE
 
-La implementación debe satisfacer:
+The implementation must satisfy:
 
 * Tasks;
 * Specification;
-* restricciones aceptadas;
-* trazabilidad;
-* ausencia de drift funcional no resuelto.
+* accepted constraints;
+* traceability;
+* absence of unresolved functional drift.
 
-Importante:
+Important:
 
 ```text
 TESTS PASS ≠ IMPLEMENTATION GATE PASS
 ```
 
-Que los Tests pasen no significa por sí solo que Implementation haya superado su Gate.
+Tests passing does not by itself mean Implementation has passed its Gate.

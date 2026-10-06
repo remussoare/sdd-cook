@@ -1,8 +1,8 @@
 ---
 
-type: design-interaction
+artifact: design-interaction
 status: DRAFT
--------------
+---
 
 # Interaction Design
 

@@ -2,16 +2,16 @@
 
 ## PURPOSE
 
-Obtener evidencia suficiente, fiable y trazable de que la implementación satisface Specification y los criterios de aceptación en el contexto relevante.
+Obtain sufficient, reliable and traceable evidence that the implementation satisfies the Specification and the acceptance criteria in the relevant context.
 
-La diferencia fundamental es:
+The fundamental difference is:
 
 ```text
 IMPLEMENTATION
-= ¿lo he construido correctamente?
+= did I build it correctly?
 
 VALIDATION
-= ¿tenemos suficiente evidencia de que funciona correctamente en contexto?
+= do we have sufficient evidence that it works correctly in context?
 ```
 
 ## INPUT
@@ -26,7 +26,7 @@ VALIDATION
 
 ## ANALYSIS
 
-Comparar:
+Compare:
 
 ```text
 EXPECTED
@@ -34,9 +34,9 @@ vs
 ACTUAL
 ```
 
-La validación debe utilizar el nivel de evidencia apropiado al contexto.
+Validation must use the level of evidence appropriate to the context.
 
-Puede incluir, cuando corresponda:
+It may include, as applicable:
 
 * unit;
 * integration;
@@ -49,17 +49,17 @@ Puede incluir, cuando corresponda:
 
 ## ALLOWED
 
-El agente puede ejecutar las verificaciones necesarias para obtener evidencia suficiente.
+The agent may execute the verifications needed to obtain sufficient evidence.
 
 ## FORBIDDEN
 
-El agente no puede:
+The agent may not:
 
-* declarar PASS sin evidencia suficiente;
-* ocultar regresiones;
-* cerrar decisiones sin resolver;
-* convertir una limitación del entorno en PASS;
-* declarar éxito basándose únicamente en una comprobación insuficiente.
+* declare PASS without sufficient evidence;
+* hide regressions;
+* close unresolved decisions;
+* turn an environment limitation into PASS;
+* declare success based solely on an insufficient check.
 
 ## STATES
 
@@ -99,13 +99,7 @@ REVALIDATE
 
 ## GATE
 
-Solo puede declararse:
-
-```text
-PASS
-```
-
-cuando existe evidencia suficiente y fiable.
+PASS may only be declared when sufficient and reliable evidence exists.
 
 ```text
 PASS
@@ -113,4 +107,4 @@ PASS
 LOCKED
 ```
 
-`FAIL`, `BLOCKED` e `INCONCLUSIVE` no pueden producir LOCKED.
+`FAIL`, `BLOCKED` and `INCONCLUSIVE` cannot produce LOCKED.

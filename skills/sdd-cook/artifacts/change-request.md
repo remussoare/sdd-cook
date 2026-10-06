@@ -1,10 +1,10 @@
 # Change Request
 
-Un Change Request se utiliza cuando una modificación afecta a una decisión aceptada o requiere controlar una nueva evolución.
+A Change Request is used when a modification affects an accepted decision or requires controlling a new evolution.
 
 ## STATUS
 
-```text id="3m5t9k"
+```text
 PROPOSED
 ANALYZING
 AWAITING_DECISION

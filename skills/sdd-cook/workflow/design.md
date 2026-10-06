@@ -14,3 +14,5 @@ Typical placement:
 - Validation: verify visual/interaction acceptance in context.
 
 The agent may choose presentation details only when they are derivable from accepted requirements or design decisions. Otherwise it must propose and request a decision.
+
+In `/sdd:plan`, a non-derivable visual request blocks Plan/Tests/Tasks creation until the missing information (colors, typography, layout, visual states, references/mockups, branding constraints, accessibility minimum) is provided and accepted. If a visual decision changes behavior, state, scope, or architecture, route it through Specification/Change Management; otherwise record it in `design/visual.md` as an auxiliary artifact.

@@ -1,9 +1,12 @@
 package transpile
 
 import (
+	"io/fs"
 	"strings"
 	"testing"
 	"testing/fstest"
+
+	sddcook "github.com/remussoare/sdd-cook"
 )
 
 var testSkill = fstest.MapFS{
@@ -108,5 +111,20 @@ func TestPayloadVSCode(t *testing.T) {
 func TestPayloadUnknownHost(t *testing.T) {
 	if _, err := Payload("nope", testSkill); err == nil {
 		t.Errorf("expected error for unknown host")
+	}
+}
+
+// TestPurposeOfEmbeddedCommands guards against heading rot in the real
+// command docs: every /sdd command must yield an extracted purpose from the
+// embedded skill, never the fallback string.
+func TestPurposeOfEmbeddedCommands(t *testing.T) {
+	sub, err := fs.Sub(sddcook.SkillsFS, "skills/sdd-cook")
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, c := range []string{"init", "new", "plan", "run", "validate", "change", "status"} {
+		if p := purposeOf(sub, c); strings.HasPrefix(p, "see commands/") {
+			t.Errorf("purposeOf(%s) fell back to %q — check the '## PURPOSE' heading in embedded commands/%s.md", c, p, c)
+		}
 	}
 }

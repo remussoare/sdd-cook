@@ -1,8 +1,8 @@
 ---
 
-type: plan
+artifact: plan
 status: DRAFT
--------------
+---
 
 # Plan
 
@@ -19,6 +19,10 @@ status: DRAFT
 ## Risks
 
 ## Auxiliary Artifacts
+
+## Visual Inputs
+
+Accepted or derivable visual/interaction decisions, or reference to `design/visual.md`.
 
 ## Tests
 

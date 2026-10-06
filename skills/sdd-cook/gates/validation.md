@@ -2,7 +2,7 @@
 
 ## Criterion
 
-¿Existe evidencia suficiente, fiable y trazable de que la Implementation cumple la Specification y los criterios de aceptación en el contexto relevante?
+Does sufficient, reliable and traceable evidence exist that the Implementation satisfies the Specification and the acceptance criteria in the relevant context?
 
 ## Lifecycle
 
@@ -18,4 +18,4 @@ BLOCKED
 INCONCLUSIVE
 ```
 
-No permiten pasar a LOCKED.
+These do not allow moving to LOCKED.

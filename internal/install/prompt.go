@@ -13,6 +13,7 @@ import (
 type prompter struct {
 	stdin  io.Reader
 	stdout io.Writer
+	reader *bufio.Reader
 }
 
 func newPrompter(stdin io.Reader, stdout io.Writer) *prompter {
@@ -22,7 +23,7 @@ func newPrompter(stdin io.Reader, stdout io.Writer) *prompter {
 	if stdout == nil {
 		stdout = os.Stdout
 	}
-	return &prompter{stdin: stdin, stdout: stdout}
+	return &prompter{stdin: stdin, stdout: stdout, reader: bufio.NewReader(stdin)}
 }
 
 // interactive reports whether we may ask the user questions.
@@ -38,8 +39,9 @@ func (p *prompter) interactive() bool {
 }
 
 func (p *prompter) readLine() string {
-	r := bufio.NewReader(p.stdin)
-	line, _ := r.ReadString('\n')
+	// One shared buffered reader: recreating it per call discards input
+	// buffered past the first newline (e.g. pasted answers).
+	line, _ := p.reader.ReadString('\n')
 	return strings.TrimSpace(line)
 }
 

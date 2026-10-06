@@ -2,11 +2,11 @@
 
 ## PURPOSE
 
-Mostrar el estado real del proyecto SDD.
+Show the real SDD project state.
 
 ## ACTIONS
 
-Leer `.spec/` y mostrar el estado existente.
+Read `.spec/` and show the existing state.
 
 ## OUTPUT
 
@@ -32,13 +32,13 @@ Next action:
 
 ## RULES
 
-Mostrar únicamente estados que puedan determinarse a partir de los artefactos existentes.
+Show only states that can be determined from existing artifacts.
 
-No inventar estados cuando falten artefactos.
+Never invent states when artifacts are missing.
 
-Identificar:
+Identify:
 
-* dependencias faltantes;
-* bloqueos;
+* missing dependencies;
+* blockers;
 * drift;
-* siguiente acción autorizada.
+* the next authorized action.

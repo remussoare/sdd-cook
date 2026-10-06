@@ -2,26 +2,26 @@
 
 ## Definition
 
-`LOCKED` significa:
+`LOCKED` means:
 
-> El estado actual del componente ha sido validado y aceptado como consistente con su Specification.
+> The current state of the component has been validated and accepted as consistent with its Specification.
 
-LOCKED es un estado del ciclo de vida.
+LOCKED is a lifecycle state.
 
-No es una fase adicional.
+It is not an additional phase.
 
 ## Characteristics
 
-Un estado LOCKED:
+A LOCKED state:
 
-* representa una evolución aceptada;
-* conserva su historial;
-* puede evolucionar posteriormente;
-* no puede modificarse silenciosamente.
+* represents an accepted evolution;
+* preserves its history;
+* may evolve later;
+* cannot be modified silently.
 
 ## Change
 
-Una modificación posterior sigue:
+A later modification follows:
 
 ```text
 LOCKED
@@ -35,10 +35,10 @@ DECISION
 NEW EVOLUTION
 ```
 
-La nueva evolución obtiene su propia validación y puede alcanzar:
+The new evolution obtains its own validation and may reach:
 
 ```text
 LOCKED v2
 ```
 
-sin eliminar la historia anterior.
+without deleting previous history.

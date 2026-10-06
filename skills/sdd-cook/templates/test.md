@@ -1,8 +1,8 @@
 ---
 
-type: test
+artifact: test
 status: DRAFT
--------------
+---
 
 # Test
 

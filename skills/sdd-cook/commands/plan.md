@@ -2,7 +2,7 @@
 
 ## PURPOSE
 
-Transformar una Specification aceptada en:
+Transform an accepted Specification into:
 
 ```text
 PLAN
@@ -17,31 +17,34 @@ TASKS
 * Objective;
 * Domain;
 * Specification;
-* decisiones aceptadas.
+* accepted decisions.
 
 ## ACTIONS
 
-El agente debe:
+The agent must:
 
-1. Leer los artefactos aceptados.
-2. Comprobar que Specification es suficientemente completa.
-3. Bloquear si existe ambigüedad funcional.
-4. Crear Plan.
-5. Definir orden y dependencias.
-6. Definir estrategia de verificación.
-7. Definir el rigor necesario.
-8. Crear Tests.
-9. Crear Tasks.
-10. Mantener trazabilidad.
+1. Read the accepted artifacts (Objective, Domain, Specification, accepted design decisions in `.spec/design/` when present).
+2. Check that the Specification is sufficiently complete.
+3. Block if functional ambiguity exists.
+4. Block before creating the Plan if a requested visual or interaction outcome is not derivable from accepted artifacts: return BLOCKED with STATUS / REASON / AFFECTED ARTIFACT / REQUIRED DECISION / NEXT AUTHORIZED ACTION and request the missing visual information.
+5. Create the Plan.
+6. Define order and dependencies.
+7. Define the verification strategy.
+8. Define the required rigor.
+9. Create Tests.
+10. Create Tasks.
+11. Maintain traceability.
 
 ## FORBIDDEN
 
-No modificar el comportamiento definido por Specification.
+Never modify the behavior defined by the Specification.
 
-No implementar.
+Never implement.
 
-No inventar decisiones funcionales.
+Never invent functional decisions.
+
+Never invent non-derivable visual decisions (colors, typography, layout, visual states, interaction) instead of requesting them.
 
 ## OUTPUT
 
-Plan, Tests y Tasks listos para ejecución.
+Plan, Tests and Tasks ready for execution.
